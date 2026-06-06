@@ -1,0 +1,10 @@
+name: tables-app
+metadata:
+  template: tables-app@0.0.1
+
+services:
+  web:
+    project: .
+    language: js
+    host: staticwebapp
+    dist: dist/tables-app/browser
