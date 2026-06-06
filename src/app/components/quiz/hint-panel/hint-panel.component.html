@@ -1,0 +1,27 @@
+<div class="hint-panel animate-slide-up">
+  @if (headerLabel()) {
+    <div class="panel-header">{{ headerLabel() }}</div>
+  }
+
+  <div class="table-title">
+    <span class="table-num">{{ tableNumber() }}</span>
+    <span class="times-sign">×</span>
+    <span class="table-label">Table</span>
+  </div>
+
+  <div class="table-grid">
+    @for (row of rows(); track row.factor) {
+      <div class="table-row" [class.hidden-row]="row.hidden">
+        <span class="factor">{{ tableNumber() }}</span>
+        <span class="operator">×</span>
+        <span class="factor">{{ row.factor }}</span>
+        <span class="equals">=</span>
+        @if (row.hidden) {
+          <span class="product blurred">???</span>
+        } @else {
+          <span class="product">{{ row.product }}</span>
+        }
+      </div>
+    }
+  </div>
+</div>

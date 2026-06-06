@@ -1,0 +1,53 @@
+<div class="welcome-container">
+  <!-- Floating decorative bubbles -->
+  @for (b of bubbles; track b.id) {
+    <div
+      class="bubble"
+      [style.width.px]="b.size"
+      [style.height.px]="b.size"
+      [style.left.%]="b.left"
+      [style.animation-delay.s]="b.delay"
+      [style.animation-duration.s]="b.duration"
+      [style.background]="b.color"
+    ></div>
+  }
+
+  <!-- Hero Card -->
+  <div class="hero-card card animate-slide-up">
+    <div class="emoji-row">
+      <span class="emoji">🌟</span>
+      <span class="emoji delay-1">🔢</span>
+      <span class="emoji delay-2">🌈</span>
+    </div>
+
+    <h1 class="title">Math Tables!</h1>
+    <p class="subtitle">Practice your multiplication tables and become a Math Star! ⭐</p>
+
+    <!-- Rules -->
+    <div class="rules-grid">
+      <div class="rule-item">
+        <span class="rule-icon">🎯</span>
+        <span>10 questions per round</span>
+      </div>
+      <div class="rule-item">
+        <span class="rule-icon">💡</span>
+        <span>Hints available if you're stuck</span>
+      </div>
+      <div class="rule-item">
+        <span class="rule-icon">📖</span>
+        <span>Full table to memorize</span>
+      </div>
+      <div class="rule-item">
+        <span class="rule-icon">🏆</span>
+        <span>8+ correct = celebration!</span>
+      </div>
+    </div>
+
+    <button class="btn btn-pink btn-lg start-btn" (click)="startPractice()">
+      <span>Let's Go!</span>
+      <span>🚀</span>
+    </button>
+
+    <p class="range-note">Tables 2 × 2 all the way to 10 × 10</p>
+  </div>
+</div>

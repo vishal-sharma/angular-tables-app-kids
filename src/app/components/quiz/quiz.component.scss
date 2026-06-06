@@ -1,0 +1,217 @@
+.quiz-container {
+  min-height: 100vh;
+  padding: 1.5rem 1rem 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* === Progress Bar === */
+.progress-bar-wrap {
+  width: 100%;
+  max-width: 640px;
+  margin-bottom: 1.5rem;
+}
+
+.progress-bar-track {
+  width: 100%;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--purple), var(--pink), var(--aqua));
+  background-size: 200% auto;
+  animation: shimmer 2s linear infinite;
+  transition: width 0.4s ease;
+}
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.45rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.score-live {
+  color: var(--aqua-light);
+}
+
+/* === Quiz Layout === */
+.quiz-layout {
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* === Question Card === */
+.question-card {
+  text-align: center;
+  padding: 2rem 1.5rem;
+
+  &.flash-correct {
+    animation: flash-correct 0.7s ease;
+  }
+
+  &.flash-wrong {
+    animation: flash-wrong 0.7s ease;
+  }
+}
+
+.q-label {
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.question-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.75rem;
+}
+
+.q-num {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  background: linear-gradient(135deg, var(--purple-light), var(--blue-light));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.q-op {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: var(--pink);
+  line-height: 1;
+}
+
+.q-eq {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  color: var(--text-muted);
+  line-height: 1;
+}
+
+.q-ans {
+  font-family: var(--font-heading);
+  font-size: clamp(2.5rem, 8vw, 4.5rem);
+  background: linear-gradient(135deg, var(--pink), var(--aqua));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* === Answer Input === */
+.input-row {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+.answer-input {
+  flex: 1;
+  min-width: 0;
+  max-width: 340px;
+  padding: 0.75rem 1rem;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  text-align: center;
+
+  &::placeholder {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  &:focus {
+    border-color: var(--purple-light);
+    box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.25);
+  }
+
+  /* Prevent non-numeric display artefacts */
+  letter-spacing: 0.05em;
+}
+
+.submit-btn {
+  align-self: stretch;
+}
+
+.hint-badge {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--pink-light);
+  margin-bottom: 0.5rem;
+  opacity: 0.85;
+}
+
+.hint-btn {
+  font-size: 0.9rem;
+  padding: 0.55rem 1.25rem;
+}
+
+/* === Hint Section === */
+.hint-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: slide-up 0.35s ease both;
+}
+
+.hint-action-btn {
+  width: 100%;
+}
+
+/* === Memorize Banner === */
+.memorize-banner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(6, 182, 212, 0.1);
+  border: 1px solid rgba(6, 182, 212, 0.25);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+}
+
+.memorize-icon {
+  font-size: 2.5rem;
+  flex-shrink: 0;
+}
+
+.memorize-title {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  color: var(--aqua-light);
+  margin-bottom: 0.2rem;
+}
+
+.memorize-sub {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}

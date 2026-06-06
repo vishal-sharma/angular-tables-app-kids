@@ -1,0 +1,78 @@
+<div class="results-container">
+  <div class="results-card card animate-bounce-in">
+
+    <!-- Header emoji -->
+    <div class="result-header">
+      @if (score() === 10) {
+        <div class="trophy-emoji">🏆</div>
+      } @else if (isGreat()) {
+        <div class="trophy-emoji">🌟</div>
+      } @else if (isGood()) {
+        <div class="trophy-emoji">😊</div>
+      } @else {
+        <div class="trophy-emoji">💪</div>
+      }
+    </div>
+
+    <!-- Score Badge -->
+    <div class="score-badge" [class]="'grade-' + grade().color">
+      <span class="score-num">{{ score() }}</span>
+      <span class="score-sep">/</span>
+      <span class="score-den">{{ total() }}</span>
+    </div>
+
+    <p class="grade-label">{{ grade().label }}</p>
+
+    <p class="encouragement">
+      @if (score() === 10) {
+        You got everything right! You're a multiplication master! 🎉
+      } @else if (isGreat()) {
+        Fantastic work! You're really good at this! Keep it up! 🚀
+      } @else if (isGood()) {
+        Nice effort! A bit more practice and you'll be a pro! 📚
+      } @else {
+        Don't give up! Every time you practice you get better! 💫
+      }
+    </p>
+
+    <!-- Review Toggle -->
+    <button class="btn btn-ghost review-toggle-btn" (click)="toggleReview()">
+      @if (showReview()) {
+        Hide answers ▲
+      } @else {
+        Show answers ▼
+      }
+    </button>
+
+    <!-- Answer Review -->
+    @if (showReview()) {
+      <div class="review-list animate-slide-up">
+        @for (ans of answers(); track $index; let i = $index) {
+          <div class="review-row" [class.row-correct]="ans.correct" [class.row-wrong]="!ans.correct">
+            <span class="row-num">{{ i + 1 }}.</span>
+            <span class="row-eq">
+              {{ ans.question.a }} × {{ ans.question.b }} = ?
+            </span>
+            <span class="row-user" [class.correct-ans]="ans.correct" [class.wrong-ans]="!ans.correct">
+              {{ ans.userAnswer ?? '—' }}
+            </span>
+            @if (!ans.correct) {
+              <span class="row-correct-val">✓ {{ ans.question.answer }}</span>
+            } @else {
+              <span class="row-tick">✓</span>
+            }
+            @if (ans.hintUsed) {
+              <span class="hint-tag">💡</span>
+            }
+          </div>
+        }
+      </div>
+    }
+
+    <!-- Action Buttons -->
+    <div class="action-row">
+      <button class="btn btn-pink" (click)="playAgain()">Play Again 🎮</button>
+      <button class="btn btn-ghost" (click)="goHome()">Home 🏠</button>
+    </div>
+  </div>
+</div>

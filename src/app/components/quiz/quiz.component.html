@@ -1,0 +1,103 @@
+<div class="quiz-container">
+  <!-- Progress Bar -->
+  <div class="progress-bar-wrap">
+    <div class="progress-bar-track">
+      <div class="progress-bar-fill" [style.width.%]="progress()"></div>
+    </div>
+    <div class="progress-labels">
+      <span class="q-counter">Question {{ answered() + 1 }} of {{ totalQ() }}</span>
+      <span class="score-live">⭐ {{ liveScore() }} correct</span>
+    </div>
+  </div>
+
+  @if (question()) {
+    <div class="quiz-layout">
+
+      <!-- Question Card -->
+      @if (showQuestion()) {
+        <div class="question-card card animate-bounce-in" [class]="flashClass()">
+          <div class="q-label">What is…</div>
+          <div class="question-display">
+            <span class="q-num">{{ question()!.a }}</span>
+            <span class="q-op">×</span>
+            <span class="q-num">{{ question()!.b }}</span>
+            <span class="q-eq">=</span>
+            <span class="q-ans">?</span>
+          </div>
+
+          <!-- Answer Input -->
+          @if (hintState() === 'answering' || hintState() === 'ready' || hintState() === 'hint-partial') {
+            <div class="input-row">
+              <input
+                #answerInput
+                type="text"
+                inputmode="numeric"
+                pattern="[0-9]*"
+                class="answer-input"
+                [ngModel]="userInput()"
+                (ngModelChange)="userInput.set($event)"
+                (keydown)="onKeydown($event)"
+                placeholder="Type your answer…"
+                autocomplete="off"
+                autofocus
+              />
+              <button
+                class="btn btn-blue submit-btn"
+                (click)="submit()"
+                [disabled]="userInput().trim() === ''"
+              >
+                Check ✓
+              </button>
+            </div>
+
+            @if (hintUsed()) {
+              <p class="hint-badge">💡 Hint used</p>
+            }
+
+            @if (hintState() === 'answering') {
+              <button class="btn btn-ghost hint-btn" (click)="showPartialHint()">
+                💡 I need a hint
+              </button>
+            }
+          }
+        </div>
+      }
+
+      <!-- Hint Panel -->
+      @if (showHint()) {
+        <div class="hint-section">
+          @if (hintState() === 'hint-partial') {
+            <app-hint-panel
+              [tableNumber]="question()!.a"
+              [hideRow]="hideAnswerRow()"
+              headerLabel="Think about it… can you work out the answer?"
+            />
+            <button class="btn btn-pink hint-action-btn" (click)="showFullHint()">
+              Still don't know? Show full table 📖
+            </button>
+          }
+
+          @if (hintState() === 'hint-full') {
+            <div class="memorize-banner">
+              <span class="memorize-icon">🧠</span>
+              <div>
+                <p class="memorize-title">Memorize time!</p>
+                <p class="memorize-sub">Study the table below, then try the question again.</p>
+              </div>
+            </div>
+
+            <app-hint-panel
+              [tableNumber]="question()!.a"
+              [hideRow]="-1"
+              headerLabel="Full table — memorize it!"
+            />
+
+            <button class="btn btn-aqua hint-action-btn" (click)="gotIt()">
+              Got it! Show question again 🙌
+            </button>
+          }
+        </div>
+      }
+    </div>
+  }
+</div>

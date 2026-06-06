@@ -1,0 +1,118 @@
+.welcome-container {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+  overflow: hidden;
+}
+
+/* === Floating Bubbles === */
+.bubble {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.15;
+  top: -80px;
+  animation: float-up linear infinite;
+  filter: blur(1px);
+  pointer-events: none;
+}
+
+@keyframes float-up {
+  0%   { transform: translateY(110vh) scale(0.8); opacity: 0; }
+  10%  { opacity: 0.18; }
+  90%  { opacity: 0.12; }
+  100% { transform: translateY(-10vh) scale(1.1); opacity: 0; }
+}
+
+/* === Hero Card === */
+.hero-card {
+  position: relative;
+  z-index: 10;
+  max-width: 560px;
+  width: 100%;
+  text-align: center;
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+/* === Emoji Row === */
+.emoji-row {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.emoji {
+  font-size: 2.5rem;
+  display: inline-block;
+  animation: float 4s ease-in-out infinite;
+}
+
+.delay-1 { animation-delay: 1.3s; }
+.delay-2 { animation-delay: 2.6s; }
+
+/* === Title === */
+.title {
+  font-family: var(--font-heading);
+  font-size: clamp(2.8rem, 8vw, 4.5rem);
+  background: linear-gradient(135deg, var(--purple-light), var(--pink), var(--aqua-light));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 1.75rem;
+  font-weight: 600;
+}
+
+/* === Rules Grid === */
+.rules-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.rule-item {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-md);
+  padding: 0.7rem 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  text-align: left;
+}
+
+.rule-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+/* === Start Button === */
+.start-btn {
+  width: 100%;
+  max-width: 280px;
+  font-size: 1.3rem;
+  padding: 1rem 2rem;
+  margin-bottom: 1rem;
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.range-note {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  letter-spacing: 0.03em;
+}
